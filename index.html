@@ -1,0 +1,619 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Atelier PA - Fachadas e Design Gráfico</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Poppins', sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #1e3c72, #2a5298);
+            overflow-x: hidden;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* Header */
+        header {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(20px);
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            transition: all 0.4s ease;
+        }
+        
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 0;
+        }
+        
+        .logo {
+            font-size: 2.5rem;
+            font-weight: 700;
+            background: linear-gradient(45deg, #c41e3a, #e74c3c);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+        
+        .nav-links a {
+            text-decoration: none;
+            color: #1e3c72;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+        
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: linear-gradient(45deg, #c41e3a, #e74c3c);
+            transition: width 0.3s ease;
+        }
+        
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+        
+        .nav-links a:hover {
+            color: #c41e3a;
+            transform: translateY(-2px);
+        }
+        
+        .mobile-menu-toggle {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            color: #1e3c72;
+            cursor: pointer;
+        }
+        
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            text-align: center;
+            color: white;
+            padding-top: 80px;
+        }
+        
+        .hero-content h1 {
+            font-size: 4rem;
+            margin-bottom: 1rem;
+            font-weight: 700;
+            animation: fadeInUp 1s ease;
+        }
+        
+        .hero-content p {
+            font-size: 1.3rem;
+            margin-bottom: 1rem;
+            animation: fadeInUp 1s ease 0.2s both;
+        }
+        
+        .hero-content .highlight {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: #ffd700;
+            animation: fadeInUp 1s ease 0.4s both;
+            margin-bottom: 2rem;
+        }
+        
+        .cta-button {
+            background: linear-gradient(45deg, #c41e3a, #e74c3c);
+            color: white;
+            padding: 20px 40px;
+            border: none;
+            border-radius: 50px;
+            font-size: 1.2rem;
+            font-weight: 600;
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-block;
+            transition: all 0.4s ease;
+            animation: fadeInUp 1s ease 0.6s both;
+            box-shadow: 0 8px 25px rgba(196, 30, 58, 0.3);
+        }
+        
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 35px rgba(196, 30, 58, 0.5);
+        }
+        
+        /* Common Section Styles */
+        .section-title {
+            text-align: center;
+            font-size: 3rem;
+            font-weight: 700;
+            margin-bottom: 4rem;
+            position: relative;
+        }
+        
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 4px;
+            background: linear-gradient(45deg, #c41e3a, #e74c3c);
+            border-radius: 2px;
+        }
+        
+        /* Services Section */
+        .services {
+            padding: 120px 0;
+            background: linear-gradient(135deg, #f8f9fa, #e9ecef);
+        }
+        
+        .services .section-title {
+            background: linear-gradient(45deg, #1e3c72, #2a5298);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+        
+        .service-card {
+            background: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(20px);
+            padding: 2rem;
+            border-radius: 20px;
+            text-align: center;
+            transition: all 0.4s ease;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        
+        .service-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.15);
+        }
+        
+        .service-icon {
+            font-size: 3rem;
+            margin-bottom: 1.5rem;
+        }
+        
+        .service-card h3 {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: #1e3c72;
+            margin-bottom: 1rem;
+        }
+        
+        .service-card p {
+            color: #666;
+            line-height: 1.6;
+        }
+        
+        /* Products Section */
+        .products {
+            padding: 120px 0;
+            background: linear-gradient(135deg, #1e3c72, #2a5298);
+        }
+        
+        .products .section-title {
+            color: white;
+            background: linear-gradient(45deg, #fff, #f8f9fa);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+        }
+        
+        .product-card {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(20px);
+            border-radius: 20px;
+            overflow: hidden;
+            transition: all 0.4s ease;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .product-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+        }
+        
+        .product-image {
+            height: 150px;
+            background: linear-gradient(45deg, #c41e3a, #e74c3c);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 3rem;
+        }
+        
+        .product-info {
+            padding: 1.5rem;
+            color: white;
+        }
+        
+        .product-title {
+            font-size: 1.3rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+        
+        .product-description {
+            color: rgba(255, 255, 255, 0.8);
+            font-size: 0.9rem;
+            line-height: 1.5;
+        }
+        
+        /* Contact Section */
+        .contact {
+            padding: 120px 0;
+            background: linear-gradient(135deg, #0d1b2a, #1e3c72);
+            color: white;
+            text-align: center;
+        }
+        
+        .contact-info {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+        
+        .contact-item {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(20px);
+            padding: 2rem;
+            border-radius: 20px;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .contact-item:hover {
+            transform: translateY(-5px);
+            background: rgba(255, 255, 255, 0.15);
+        }
+        
+        .contact-icon {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+        
+        .contact-item h3 {
+            font-size: 1.3rem;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+        }
+        
+        .contact-item p {
+            color: rgba(255, 255, 255, 0.9);
+            font-weight: 500;
+        }
+        
+        /* Footer */
+        footer {
+            background: #000;
+            color: white;
+            text-align: center;
+            padding: 2rem 0;
+        }
+        
+        footer p {
+            color: rgba(255, 255, 255, 0.8);
+        }
+        
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .scroll-animation {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.6s ease;
+        }
+        
+        .scroll-animation.animate {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .mobile-menu-toggle {
+                display: block;
+            }
+            
+            .nav-links {
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                background: rgba(255, 255, 255, 0.95);
+                backdrop-filter: blur(20px);
+                flex-direction: column;
+                padding: 1rem 0;
+                gap: 1rem;
+                box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            }
+            
+            .nav-links.active {
+                display: flex;
+            }
+            
+            .hero-content h1 {
+                font-size: 2.5rem;
+            }
+            
+            .hero-content p {
+                font-size: 1.1rem;
+            }
+            
+            .section-title {
+                font-size: 2rem;
+            }
+            
+            .services-grid,
+            .products-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .contact-info {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav class="container">
+            <div class="logo">Atelier PA</div>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="#home">Início</a></li>
+                <li><a href="#services">Serviços</a></li>
+                <li><a href="#products">Produtos</a></li>
+                <li><a href="#contact">Contato</a></li>
+            </ul>
+            <button class="mobile-menu-toggle" id="mobileToggle">☰</button>
+        </nav>
+    </header>
+
+    <section id="home" class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <h1>Atelier PA</h1>
+                <p>Especialistas em Fachadas e Design Gráfico</p>
+                <p class="highlight">ORÇAMENTOS COMPLETOS!</p>
+                <a href="#contact" class="cta-button">Solicite seu Orçamento</a>
+            </div>
+        </div>
+    </section>
+
+    <section id="services" class="services">
+        <div class="container">
+            <h2 class="section-title scroll-animation">Nossos Serviços</h2>
+            <div class="services-grid">
+                <div class="service-card scroll-animation">
+                    <div class="service-icon">🏢</div>
+                    <h3>Fachadas Profissionais</h3>
+                    <p>Projetos completos de fachadas modernas e funcionais que destacam seu negócio com elegância e profissionalismo.</p>
+                </div>
+                <div class="service-card scroll-animation">
+                    <div class="service-icon">🎨</div>
+                    <h3>Design Gráfico</h3>
+                    <p>Criação de identidade visual completa, materiais gráficos e peças publicitárias que comunicam sua marca com impacto.</p>
+                </div>
+                <div class="service-card scroll-animation">
+                    <div class="service-icon">📊</div>
+                    <h3>Consultoria Completa</h3>
+                    <p>Acompanhamento completo do projeto, desde a concepção até a execução, com orçamentos detalhados e transparentes.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="products" class="products">
+        <div class="container">
+            <h2 class="section-title scroll-animation">Nossos Produtos</h2>
+            <div class="products-grid">
+                <div class="product-card scroll-animation">
+                    <div class="product-image">🎯</div>
+                    <div class="product-info">
+                        <h3 class="product-title">Banner</h3>
+                        <p class="product-description">Banners personalizados para eventos, promoções e campanhas publicitárias com alta qualidade.</p>
+                    </div>
+                </div>
+                <div class="product-card scroll-animation">
+                    <div class="product-image">🏢</div>
+                    <div class="product-info">
+                        <h3 class="product-title">Fachada</h3>
+                        <p class="product-description">Fachadas modernas e atrativas com design exclusivo e materiais de primeira linha.</p>
+                    </div>
+                </div>
+                <div class="product-card scroll-animation">
+                    <div class="product-image">⚡</div>
+                    <div class="product-info">
+                        <h3 class="product-title">ACM</h3>
+                        <p class="product-description">Placas em ACM de alta qualidade, resistentes e com acabamento premium.</p>
+                    </div>
+                </div>
+                <div class="product-card scroll-animation">
+                    <div class="product-image">📋</div>
+                    <div class="product-info">
+                        <h3 class="product-title">Placas</h3>
+                        <p class="product-description">Placas personalizadas em diversos materiais para sinalização profissional.</p>
+                    </div>
+                </div>
+                <div class="product-card scroll-animation">
+                    <div class="product-image">☂️</div>
+                    <div class="product-info">
+                        <h3 class="product-title">Toldos</h3>
+                        <p class="product-description">Toldos de diversas formas para proteção contra chuva e sol com acabamento profissional.</p>
+                    </div>
+                </div>
+                <div class="product-card scroll-animation">
+                    <div class="product-image">🎨</div>
+                    <div class="product-info">
+                        <h3 class="product-title">PVC</h3>
+                        <p class="product-description">Materiais em PVC resistentes para uso interno e externo com excelente custo-benefício.</p>
+                    </div>
+                </div>
+                <div class="product-card scroll-animation">
+                    <div class="product-image">🖼️</div>
+                    <div class="product-info">
+                        <h3 class="product-title">Adesivo</h3>
+                        <p class="product-description">Adesivos personalizados para vitrines, veículos e aplicações diversas.</p>
+                    </div>
+                </div>
+                <div class="product-card scroll-animation">
+                    <div class="product-image">💪</div>
+                    <div class="product-info">
+                        <h3 class="product-title">Cavaleto</h3>
+                        <p class="product-description">Cavaletes de dois lados, perfeitos para sinalização em vias públicas.</p>
+                    </div>
+                </div>
+                <div class="product-card scroll-animation">
+                    <div class="product-image">ℹ️</div>
+                    <div class="product-info">
+                        <h3 class="product-title">Placas Informativas</h3>
+                        <p class="product-description">Placas de sinalização personalizadas para orientação e comunicação eficaz.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact" class="contact">
+        <div class="container">
+            <h2 class="section-title scroll-animation">Entre em Contato</h2>
+            <p class="scroll-animation" style="font-size: 1.2rem; margin-bottom: 2rem;">Solicite seu orçamento completo e sem compromisso!</p>
+            <div class="contact-info">
+                <div class="contact-item scroll-animation">
+                    <div class="contact-icon">📱</div>
+                    <h3>WhatsApp</h3>
+                    <p>(81) 9.9929-3299</p>
+                </div>
+                <div class="contact-item scroll-animation">
+                    <div class="contact-icon">📧</div>
+                    <h3>Email</h3>
+                    <p>pinter.arte02@gmail.com</p>
+                </div>
+                <div class="contact-item scroll-animation">
+                    <div class="contact-icon">📍</div>
+                    <h3>Localização</h3>
+                    <p>Vitória de Santo Antão - PE</p>
+                </div>
+                <div class="contact-item scroll-animation">
+                    <div class="contact-icon">📱</div>
+                    <h3>Instagram</h3>
+                    <p>@atelierpavitoria</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 Atelier PA. Todos os direitos reservados.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile Menu
+        const mobileToggle = document.getElementById('mobileToggle');
+        const navLinks = document.getElementById('navLinks');
+        
+        mobileToggle.addEventListener('click', function() {
+            navLinks.classList.toggle('active');
+        });
+
+        // Smooth scrolling
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                    navLinks.classList.remove('active');
+                }
+            });
+        });
+
+        // Header scroll effect
+        window.addEventListener('scroll', function() {
+            const header = document.querySelector('header');
+            if (window.scrollY > 100) {
+                header.style.background = 'rgba(255, 255, 255, 0.98)';
+                header.style.boxShadow = '0 6px 35px rgba(0, 0, 0, 0.15)';
+            } else {
+                header.style.background = 'rgba(255, 255, 255, 0.95)';
+                header.style.boxShadow = '0 4px 30px rgba(0, 0, 0, 0.1)';
+            }
+        });
+
+        // Scroll animations
+        const observer = new IntersectionObserver(function(entries) {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('animate');
+                }
+            });
+        }, {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        });
+
+        document.querySelectorAll('.scroll-animation').forEach(el => {
+            observer.observe(el);
+        });
+    </script>
+</body>
+</html>
